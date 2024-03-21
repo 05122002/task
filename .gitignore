@@ -1,45 +1,107 @@
-# Ignore Flax project files
-Binaries/
-Cache/
-Logs/
-Output/
-Screenshots/
-*.HotReload.*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Add your custom styles here */
+        .task-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-# Ignore Visual Studio project files (generated locally)
-*.csproj
-*.sln
+        .popup {
+            display: none;
+            position: fixed;
+            right: 50px;
+            top: 50px;
+            width: 300px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-# Ignore thumbnails created by Windows
-Thumbs.db
+        .popup form {
+            display: flex;
+            flex-direction: column;
+        }
 
-# Ignore files built by Visual Studio
-*.obj
-*.exe
-*.pdb
-*.user
-*.aps
-*.pch
-*.vspscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.cache
-*.ilk
-*.log
-[Bb]in
-[Dd]ebug*/
-*.lib
-*.sbr
-obj/
-[Rr]elease*/
-_ReSharper*/
-[Tt]est[Rr]esult*
-.vs/
+        .popup label {
+            margin-bottom: 5px;
+        }
 
-# Ignore Nuget packages folder
-packages/
+        .popup input, .popup textarea {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        .popup select {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        .popup button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button class="task-button" onclick="togglePopup()">Add Task</button>
+
+    <div class="popup" id="task-popup">
+        <form action="">
+            <label for="task-name">Task Name:</label>
+            <input type="text" id="task-name" name="task-name">
+
+            <label for="task-category">Task Category:</label>
+            <select id="task-category" name="task-category">
+                <option value="office">Office Task</option>
+                <option value="home">Home Task</option>
+            </select>
+
+            <label for="task-description">Task Description:</label>
+            <textarea id="task-description" name="task-description"></textarea>
+
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date" name="start-date">
+
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date" name="end-date">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePopup() {
+            var popup = document.getElementById('task-popup');
+            if (popup.style.display === 'block') {
+                popup.style.display = 'none';
+            } else {
+                popup.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
+
